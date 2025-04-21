@@ -1,8 +1,7 @@
 import React from "react";
 import { Container, Logo, LogoutBtn } from "../index";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
@@ -21,7 +20,7 @@ function Header() {
     },
     {
       name: "Signup",
-      slug: "/Signup",
+      slug: "/signup",
       active: !authStatus,
     },
     {
@@ -37,21 +36,29 @@ function Header() {
   ];
 
   return (
-    <header className="py-3 shadow bg-gray-500">
+    <header className="py-4 bg-white shadow-md sticky top-0 z-50">
       <Container>
-        <nav className="flex">
-          <div className="mr-4">
+        <nav className="flex items-center justify-between">
+          {/* Logo Section */}
+          <div className="flex items-center gap-2">
             <Link to="/">
-              <Logo width="70px" />
+              <Logo width="60px" />
             </Link>
           </div>
-          <ul className="flex ml-auto">
+
+          {/* Nav Items */}
+          <ul className="flex items-center gap-4">
             {navItems.map((item) =>
               item.active ? (
                 <li key={item.name}>
                   <button
                     onClick={() => navigate(item.slug)}
-                    className="inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full"
+                    className={`px-4 py-2 rounded-full font-medium transition-all duration-200 
+                      ${
+                        item.slug === window.location.pathname
+                          ? "bg-blue-100 text-blue-600" // Active item
+                          : "text-gray-700 hover:bg-blue-100 hover:text-blue-600"
+                      }`}
                   >
                     {item.name}
                   </button>

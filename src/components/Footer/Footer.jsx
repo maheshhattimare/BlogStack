@@ -1,139 +1,131 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../Logo";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function Footer() {
   return (
-    <section className="relative overflow-hidden py-10 bg-gray-400 border border-t-2 border-t-black">
-      <div className="relative z-10 mx-auto max-w-7xl px-4">
-        <div className="-m-6 flex flex-wrap">
-          <div className="w-full p-6 md:w-1/2 lg:w-5/12">
-            <div className="flex h-full flex-col justify-between">
-              <div className="mb-4 inline-flex items-center">
-                <Logo width="100px" />
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">
-                  &copy; Copyright 2023. All Rights Reserved by DevUI.
-                </p>
-              </div>
-            </div>
+    <section className="bg-gray-900 text-white py-10 border-t border-t-gray-700">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="flex flex-wrap justify-between space-y-6 md:space-y-0">
+          {/* Logo Section */}
+          <div className="w-full md:w-1/3 flex flex-col items-center md:items-start">
+            <Logo width="120px" />
+            <p className="mt-4 text-gray-400 text-sm text-center md:text-left">
+              © 2025 BlogStack. All Rights Reserved.
+            </p>
           </div>
-          <div className="w-full p-6 md:w-1/2 lg:w-2/12">
-            <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-500">
-                Company
-              </h3>
-              <ul>
-                <li className="mb-4">
-                  <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                    to="/"
-                  >
-                    Features
-                  </Link>
-                </li>
-                <li className="mb-4">
-                  <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                    to="/"
-                  >
-                    Pricing
-                  </Link>
-                </li>
-                <li className="mb-4">
-                  <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                    to="/"
-                  >
-                    Affiliate Program
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                    to="/"
-                  >
-                    Press Kit
-                  </Link>
-                </li>
-              </ul>
-            </div>
+
+          {/* About Section */}
+          <div className="w-full md:w-1/3">
+            <h3 className="text-xl font-semibold text-gray-300 mb-4">About</h3>
+            <ul>
+              <li className="mb-2">
+                <a
+                  className="text-gray-400 hover:text-white text-base"
+                  href="https://github.com/maheshhattimare"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  About Us
+                </a>
+              </li>
+
+              <li className="mb-2">
+                <Link
+                  className="text-gray-400 hover:text-white text-base"
+                  to="#"
+                >
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="text-gray-400 hover:text-white text-base"
+                  to="#"
+                >
+                  Our Team
+                </Link>
+              </li>
+            </ul>
           </div>
-          <div className="w-full p-6 md:w-1/2 lg:w-2/12">
-            <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-500">
-                Support
-              </h3>
-              <ul>
-                <li className="mb-4">
-                  <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                    to="/"
-                  >
-                    Account
-                  </Link>
-                </li>
-                <li className="mb-4">
-                  <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                    to="/"
-                  >
-                    Help
-                  </Link>
-                </li>
-                <li className="mb-4">
-                  <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                    to="/"
-                  >
-                    Contact Us
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                    to="/"
-                  >
-                    Customer Support
-                  </Link>
-                </li>
-              </ul>
-            </div>
+
+          {/* Quick Links Section */}
+          <div className="w-full md:w-1/3">
+            <h3 className="text-xl font-semibold text-gray-300 mb-4">
+              Quick Links
+            </h3>
+            <ul>
+              <li className="mb-2">
+                <Link
+                  className="text-gray-400 hover:text-white text-base"
+                  to="/"
+                >
+                  Home
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
+                  className="text-gray-400 hover:text-white text-base"
+                  to="#"
+                >
+                  Categories
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
+                  className="text-gray-400 hover:text-white text-base"
+                  to="#"
+                >
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="text-gray-400 hover:text-white text-base"
+                  to="#"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+            </ul>
           </div>
-          <div className="w-full p-6 md:w-1/2 lg:w-3/12">
-            <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-500">
-                Legals
-              </h3>
-              <ul>
-                <li className="mb-4">
-                  <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                    to="/"
-                  >
-                    Terms &amp; Conditions
-                  </Link>
-                </li>
-                <li className="mb-4">
-                  <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                    to="/"
-                  >
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                    to="/"
-                  >
-                    Licensing
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
+        </div>
+
+        {/* Social Media Section */}
+        <div className="flex justify-center mt-10 space-x-6">
+          <a
+            href="https://github.com/maheshhattimare"
+            className="text-gray-400 hover:text-white text-2xl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-github"></i>
+          </a>
+          <a
+            href="https://x.com/MaheshHattimare"
+            className="text-gray-400 hover:text-white text-2xl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-twitter"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/maheshattimare/"
+            className="text-gray-400 hover:text-white text-2xl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-instagram"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/maheshhattimare/"
+            className="text-gray-400 hover:text-white text-2xl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-linkedin-in"></i>
+          </a>
         </div>
       </div>
     </section>

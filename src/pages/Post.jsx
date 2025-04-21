@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 
 export default function Post() {
   const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { slug } = useParams();
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
@@ -15,11 +17,22 @@ export default function Post() {
 
   useEffect(() => {
     if (slug) {
-      appwriteService.getPost(slug).then((post) => {
-        if (post) {
-          setPost(post);
-        } else navigate("/");
-      });
+      appwriteService
+        .getPost(slug)
+        .then((post) => {
+          if (post) {
+            setPost(post);
+            setLoading(false);
+          } else {
+            setError("Post not found!");
+            setLoading(false);
+            navigate("/");
+          }
+        })
+        .catch((err) => {
+          setError("Failed to load post. Please try again later.");
+          setLoading(false);
+        });
     } else {
       navigate("/");
     }
@@ -27,19 +40,34 @@ export default function Post() {
 
   const deletePost = () => {
     if (post) {
-      appwriteService.deletePost(post.$id).then((status) => {
-        if (status) {
-          appwriteService.deleteFile(post.featuredImage);
-          navigate("/");
-        }
-      });
+      if (window.confirm("Are you sure you want to delete this post?")) {
+        appwriteService
+          .deletePost(post.$id)
+          .then((status) => {
+            if (status) {
+              appwriteService.deleteFile(post.featuredImage);
+              navigate("/");
+            }
+          })
+          .catch((err) => {
+            setError("Failed to delete post. Please try again later.");
+          });
+      }
     }
   };
 
-  if (!post) {
+  if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
         <p className="text-lg font-semibold">Loading post...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-lg font-semibold text-red-500">{error}</p>
       </div>
     );
   }
@@ -61,16 +89,16 @@ export default function Post() {
           )}
 
           {isAuthor && (
-            <div className="absolute right-6 top-6 flex gap-2">
-              <Link to={`/edit-post/${post.$id}`}>
-                <Button bgColor="bg-green-500" className="mr-2">
-                  Edit
+            <>
+              <div className="absolute right-6 top-6 flex gap-2">
+                <Link to={`/edit-post/${post.$id}`}>
+                  <Button className="mr-2 bg-green-500">Edit</Button>
+                </Link>
+                <Button className="bg-red-500" onClick={deletePost}>
+                  Delete
                 </Button>
-              </Link>
-              <Button bgColor="bg-red-500" onClick={deletePost}>
-                Delete
-              </Button>
-            </div>
+              </div>
+            </>
           )}
         </div>
 

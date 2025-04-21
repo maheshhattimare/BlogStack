@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Loader from "../components/Loader";
 
 export default function Protected({ children, authentication = true }) {
   const navigate = useNavigate();
-  const [getFileView, setgetFileView] = useState(true);
-  const authStatus = useSelector((state) => state.auth.status);
+  const [loading, setLoading] = useState(true);
+  const authStatus = useSelector((state) => state.auth.status); // Assuming 'status' holds the auth status (true/false)
 
   useEffect(() => {
-    //TODO: make it more easy to understand
-
-    // if (authStatus ===true){
-    //     navigate("/")
-    // } else if (authStatus === false) {
-    //     navigate("/login")
-    // }
-
-    //let authValue = authStatus === true ? true : false
-
-    if (authentication && authStatus !== authentication) {
+    if (authentication && !authStatus) {
+      // Redirect to login if authentication is required and user is not authenticated
       navigate("/login");
-    } else if (!authentication && authStatus !== authentication) {
+    } else if (!authentication && authStatus) {
+      // If the user is already authenticated and the route doesn't require authentication, navigate to home page
       navigate("/");
+    } else {
+      // If authentication status matches, proceed to show children
+      setLoading(false);
     }
-    setgetFileView(false);
-  }, [authStatus, navigate, authentication]);
+  }, [authStatus, authentication, navigate]);
 
-  return getFileView ? <h1>Loading...</h1> : <>{children}</>;
+  // Display a loading spinner while checking authentication status
+  if (loading) {
+    return <Loader />;
+  }
+
+  // If authentication status matches, render children
+  return <>{children}</>;
 }

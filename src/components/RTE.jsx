@@ -16,34 +16,21 @@ export default function RTE({ name, control, label, defaultValue = "" }) {
             apiKey={conf.tinyMceApiKey}
             initialValue={defaultValue}
             init={{
-              initialValue: defaultValue,
-              height: 500,
-              menubar: true,
+              height: 300,  // Height kam kar diya for better mobile experience
+              menubar: false, // Mobile ke liye menubar hata diya
               plugins: [
-                "image",
-                "advlist",
-                "autolink",
-                "lists",
-                "link",
-                "charmap",
-                "preview",
-                "anchor",
-                "searchreplace",
-                "visualblocks",
-                "code",
-                "fullscreen",
-                "insertdatetime",
-                "media",
-                "table",
-                "code",
-                "help",
-                "wordcount",
-                "anchor",
+                "autolink", "lists", "link", "charmap", "preview", "anchor",
+                "searchreplace", "visualblocks", "fullscreen",
+                "insertdatetime", "media", "table", "code", "help", "wordcount",
               ],
               toolbar:
-                "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
+                "undo redo | blocks | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code preview",
+              toolbar_mode: "sliding",  // 🔥 Mobile ke liye sliding toolbar mode
               content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px; }",
+              branding: false, // TinyMCE branding text hata diya
+              width: "100%", // container ka width full
+              resize: true, // user apne hisab se resize kar sake editor ko
             }}
             onEditorChange={onChange}
           />
